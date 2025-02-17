@@ -73,7 +73,7 @@ const TicketDetails = ({ navigation }) => {
 
       <TouchableOpacity 
         style={tw`bg-[#ED1C24] w-[50%] mx-auto p-4 rounded-lg  mt-4 items-center`} 
-        onPress={() => navigation.navigate('SheetPage')}
+        onPress={() => navigation.navigate('inspactionDetails')}
       >
         <Text style={tw`text-white font-bold`}>Go to sheet</Text>
       </TouchableOpacity>
