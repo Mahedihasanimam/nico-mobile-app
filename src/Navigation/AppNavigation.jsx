@@ -37,6 +37,7 @@ import ChnagePassword from '../screens/TechnicianPartStackScreens/TechnicianProf
 import AboutUs from '../screens/TechnicianPartStackScreens/TechnicianProfile/AboutUs';
 import PrivacyPolocy from '../screens/TechnicianPartStackScreens/TechnicianProfile/PrivacyPolocy';
 import FAQ from '../screens/TechnicianPartStackScreens/TechnicianProfile/FAQ';
+import TicketDetails from '../screens/TechnicianPartStackScreens/BottomScreens/Tickets/TicketDetails';
 // import Icon from 'react-native-vector-icons/Ionicons';
 
 const Stack = createNativeStackNavigator();
@@ -293,6 +294,22 @@ const AppNavigation = () => {
             headerTintColor: 'white', 
           }}
         />
+        <Stack.Screen
+          name="TicketDetails"
+          component={TicketDetails}
+          options={{
+            // headerStyle: {
+            //   backgroundColor: 'red', 
+            //   borderBottomLeftRadius: 40, 
+            //   borderBottomRightRadius: 40, 
+            //   elevation: 0, 
+            //   shadowOpacity: 0, 
+            // },
+            // headerTintColor: 'white', 
+
+            headerShown: false,
+          }}
+        />
         
 
 
@@ -327,7 +344,6 @@ const AppNavigation = () => {
         />
 
         <Stack.Screen
-        
         name='ChatDetail'
         component={ChatDetails}
         options={{
