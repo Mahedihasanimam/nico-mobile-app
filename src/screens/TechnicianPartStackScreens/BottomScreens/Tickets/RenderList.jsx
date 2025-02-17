@@ -11,42 +11,42 @@ const TicketList = () => {
   ];
   const pastTickets = [
     {
-      id: '2-1', // Changed ID to make it unique
+      id: '1', // Changed ID to make it unique
       title: 'ViewSonic',
       code: 'JF2656NCDS8',
       address: 'Road no. 14, Block-D, Banasree, Dhaka.',
       date: '10/12/2024',
     },
     {
-      id: '2-2', // Changed ID to make it unique
+      id: '2', // Changed ID to make it unique
       title: 'ViewSonic',
       code: 'JF2656NCDS8',
       address: 'Road no. 14, Block-D, Banasree, Dhaka.',
       date: '10/12/2024',
     },
     {
-      id: '2-3', // Changed ID to make it unique
+      id: '3', // Changed ID to make it unique
       title: 'ViewSonic',
       code: 'JF2656NCDS8',
       address: 'Road no. 14, Block-D, Banasree, Dhaka.',
       date: '10/12/2024',
     },
     {
-      id: '2-4', // Changed ID to make it unique
+      id: '4', // Changed ID to make it unique
       title: 'ViewSonic',
       code: 'JF2656NCDS8',
       address: 'Road no. 14, Block-D, Banasree, Dhaka.',
       date: '10/12/2024',
     },
     {
-      id: '2-5', // Changed ID to make it unique
+      id: '5', // Changed ID to make it unique
       title: 'ViewSonic',
       code: 'JF2656NCDS8',
       address: 'Road no. 14, Block-D, Banasree, Dhaka.',
       date: '10/12/2024',
     },
     {
-      id: '2-6', // Changed ID to make it unique
+      id: '6', // Changed ID to make it unique
       title: 'ViewSonic',
       code: 'JF2656NCDS8',
       address: 'Road no. 14, Block-D, Banasree, Dhaka.',
@@ -64,8 +64,8 @@ const TicketList = () => {
       </View>
       <Text style={styles.date}>{item.date}</Text>
       <TouchableOpacity
-        style={[styles.checkoutButton, styles.checkoutButtonRed]}>
-        <Text style={styles.checkoutText}>Check-out</Text>
+        style={[styles.checkoutButton, styles.checinButton]}>
+        <Text style={styles.checkoutText}>Check-in</Text>
       </TouchableOpacity>
 
       <SvgXml xml={listNavigationIcon} style={styles.arrowIcon} />
@@ -79,7 +79,7 @@ const TicketList = () => {
       <View style={styles.leftSection}>
         <Text style={[styles.text, styles.title]}>{item.title}</Text>
         <Text style={styles.text}>{item.code}</Text>
-        <Text style={styles.text}>{item.address}</Text>
+        <Text style={styles.addres}>{item.address}</Text>
       </View>
       <Text style={styles.date}>{item.date}</Text>
       <TouchableOpacity style={styles.checkoutButton}>
@@ -136,34 +136,49 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   text: {
-    fontSize: 14,
-    color: 'black',
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: '500',
+    paddingTop: 5,
   },
+  addres: {
+    fontSize: 14,
+    color: '#878787',
+    fontWeight: '500',
+    paddingTop: 5,
+  },
+
   title: {
     fontWeight: 'bold',
-    color: 'red',
+    color: '#FF0205',
+    fontSize: 16,
   },
   date: {
     position: 'absolute',
-    top: 5,
+    top: 10,
     right: '45%',
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: 'bold',
+    color: '#878787',
   },
   checkoutButton: {
-    backgroundColor: 'green',
-    paddingVertical: 5,
+    backgroundColor: '#00950A',
+    marginTop: '8%',
     paddingHorizontal: 10,
-    borderRadius: 5,
-    marginTop: '12%',
+    paddingVertical: 2,
+    borderRadius: 100,
   },
-  checkoutButtonRed: {
-    backgroundColor: 'red',
+  checinButton: {
+    backgroundColor: '#FF8383',
     marginTop: '12%',
+    paddingHorizontal: 10,
+    paddingVertical: 2,
+    borderRadius: 100,
   },
   checkoutText: {
     color: 'white',
-    fontWeight: 'bold',
+    fontSize: 10,
+    fontWeight: '600',
   },
   arrowIcon: {
     position: 'absolute',
