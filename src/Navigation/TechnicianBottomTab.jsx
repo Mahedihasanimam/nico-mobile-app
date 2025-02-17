@@ -87,6 +87,7 @@ const TechnicianBottomTab = () => {
         name="JobCard"
         component={JobCard}
         options={{
+          headerShown:false,
           tabBarIcon: ({color, focused}) =>
             focused ? (
               <JobCardIconFocused width={24} height={24} fill="red" />
