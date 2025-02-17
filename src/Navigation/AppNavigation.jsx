@@ -39,6 +39,7 @@ import PrivacyPolocy from '../screens/TechnicianPartStackScreens/TechnicianProfi
 import FAQ from '../screens/TechnicianPartStackScreens/TechnicianProfile/FAQ';
 import TicketDetails from '../screens/TechnicianPartStackScreens/BottomScreens/Tickets/TicketDetails';
 import InspactionDetails from '../screens/TechnicianPartStackScreens/BottomScreens/InspactionDetails';
+import JobcardDetails from '../screens/TechnicianPartStackScreens/BottomScreens/JobcardDetails';
 // import Icon from 'react-native-vector-icons/Ionicons';
 
 const Stack = createNativeStackNavigator();
@@ -307,6 +308,13 @@ const AppNavigation = () => {
         <Stack.Screen
           name="inspactionDetails"
           component={InspactionDetails}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="jobcarddetails"
+          component={JobcardDetails}
           options={{
             headerShown: false,
           }}

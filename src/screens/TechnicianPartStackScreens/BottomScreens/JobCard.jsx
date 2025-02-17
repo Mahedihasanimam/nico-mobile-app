@@ -69,7 +69,7 @@ const JobCard = () => {
   const renderRunningTicket = ({ item }) => (
     <TouchableOpacity
       style={tw`shadow-lg bg-white p-4 rounded-lg  mb-4 mx-2 `}
-      onPress={() => navigation.navigate('TicketDetails', { ticket: item })}>
+      onPress={() => navigation.navigate('jobcarddetails', { ticket: item })}>
       <View style={tw`flex flex-row items-center justify-between   w-full`}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.date} >{item.date}</Text>
@@ -96,7 +96,7 @@ const JobCard = () => {
   const renderPastTicket = ({ item }) => (
     <TouchableOpacity
       style={tw`shadow-lg bg-white p-4 rounded-lg  mb-4 mx-2 `}
-      onPress={() => navigation.navigate('TicketDetails', { ticket: item })}>
+      onPress={() => navigation.navigate('jobcarddetails', { ticket: item })}>
       <View style={tw`flex flex-row items-center justify-between   w-full`}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.date} >{item.date}</Text>
