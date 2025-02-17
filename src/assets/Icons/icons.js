@@ -134,3 +134,13 @@ export const editicon = `<svg width="20" height="20" viewBox="0 0 11 11" fill="n
 </svg>
 
 `
+
+export const rightArrow = `<svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M7.75313 7.38887L2.09613 13.0459L0.682129 11.6319L5.63213 6.68187L0.682129 1.73187L2.09613 0.317871L7.75313 5.97487C7.9406 6.1624 8.04592 6.41671 8.04592 6.68187C8.04592 6.94704 7.9406 7.20134 7.75313 7.38887Z" fill="black"/>
+</svg>
+`
+export const Downarrow = `<svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.65703 7.071L2.67029e-05 1.414L1.41403 0L6.36403 4.95L11.314 0L12.728 1.414L7.07103 7.071C6.8835 7.25847 6.62919 7.36379 6.36403 7.36379C6.09886 7.36379 5.84455 7.25847 5.65703 7.071Z" fill="black"/>
+</svg>
+
+`
