@@ -73,19 +73,7 @@ const TechnicianBottomTab = () => {
         name="Inspection"
         component={InspectionSheet}
         options={{
-          tabBarLabel: ({color}) => (
-            <Text
-              style={{
-                fontSize: isTablet ? 16 : 12,
-                fontWeight: 'bold',
-                textAlign: 'center',
-                color,
-                flexWrap: 'wrap', // Ensures wrapping
-                width: 60, // Adjust width to allow text wrapping
-              }}>
-              Inspection
-            </Text>
-          ),
+          headerShown: false,
           tabBarIcon: ({color, focused}) =>
             focused ? (
               <InspectionSheetIconFocused width={22} height={22} fill="red" />

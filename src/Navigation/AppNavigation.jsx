@@ -38,6 +38,7 @@ import AboutUs from '../screens/TechnicianPartStackScreens/TechnicianProfile/Abo
 import PrivacyPolocy from '../screens/TechnicianPartStackScreens/TechnicianProfile/PrivacyPolocy';
 import FAQ from '../screens/TechnicianPartStackScreens/TechnicianProfile/FAQ';
 import TicketDetails from '../screens/TechnicianPartStackScreens/BottomScreens/Tickets/TicketDetails';
+import InspactionDetails from '../screens/TechnicianPartStackScreens/BottomScreens/InspactionDetails';
 // import Icon from 'react-native-vector-icons/Ionicons';
 
 const Stack = createNativeStackNavigator();
@@ -298,15 +299,15 @@ const AppNavigation = () => {
           name="TicketDetails"
           component={TicketDetails}
           options={{
-            // headerStyle: {
-            //   backgroundColor: 'red', 
-            //   borderBottomLeftRadius: 40, 
-            //   borderBottomRightRadius: 40, 
-            //   elevation: 0, 
-            //   shadowOpacity: 0, 
-            // },
-            // headerTintColor: 'white', 
+ 
 
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="inspactionDetails"
+          component={InspactionDetails}
+          options={{
             headerShown: false,
           }}
         />

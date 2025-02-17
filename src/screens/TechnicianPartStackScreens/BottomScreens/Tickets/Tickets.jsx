@@ -10,13 +10,7 @@ const Tickets = () => {
   return (
     <View  style={styles.container}>
       <HeaderWithSearch/>
-      
       <TicketList/>
-      
-      
-
-
-     
     </View>
 
 
