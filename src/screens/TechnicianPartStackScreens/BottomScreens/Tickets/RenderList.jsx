@@ -3,6 +3,7 @@ import React from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import {listNavigationIcon} from '../../../../assets/Icons/icons';
+import tw from '../../../../lib/tailwind';
 const TicketList = () => {
   const navigation = useNavigation();
 
@@ -56,7 +57,7 @@ const TicketList = () => {
 
   const renderRunningTicket = ({item}) => (
     <TouchableOpacity
-      style={styles.card}
+    style={tw`shadow-lg bg-white p-4 rounded-lg flex-row items-center justify-between mb-4 mx-2`}
       onPress={() => navigation.navigate('TicketDetails', {ticket: item})}>
       <View style={styles.leftSection}>
         <Text style={[styles.text, styles.title]}>{item.title}</Text>
@@ -74,7 +75,7 @@ const TicketList = () => {
 
   const renderPastTicket = ({item}) => (
     <TouchableOpacity
-      style={styles.card}
+     style={tw`shadow-lg bg-white p-4 rounded-lg flex-row items-center justify-between mb-4 mx-2`}
       onPress={() => navigation.navigate('TicketDetails', {ticket: item})}>
       <View style={styles.leftSection}>
         <Text style={[styles.text, styles.title]}>{item.title}</Text>
@@ -99,8 +100,8 @@ const TicketList = () => {
           keyExtractor={item => item.id}
         />
       </View>
-      <View>
-        <Text style={styles.sectionTitle}>Past Tickets</Text>
+      <View >
+        <Text  style={styles.sectionTitle}>Past Tickets</Text>
         <FlatList
           data={pastTickets}
           renderItem={renderPastTicket}
@@ -115,23 +116,28 @@ const TicketList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+
     backgroundColor: 'white',
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginVertical: 10,
+    paddingLeft: 10,
   },
-  card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'whitesmoke',
-    padding: 10,
-    borderRadius: 8,
-    marginVertical: 5,
-    position: 'relative',
-  },
+  // card: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   backgroundColor: '#FFFFFF',
+  //   padding: 10,
+  //   borderRadius: 8,
+  //   marginVertical: 5,
+  //   position: 'relative',
+  //   shadowColor: '#00000040',
+  //   shadowOpacity: 0.5,
+  //   shadowRadius: 5,
+  //   elevation: 3,
+  // },
   leftSection: {
     flex: 1,
   },
@@ -164,15 +170,16 @@ const styles = StyleSheet.create({
   checkoutButton: {
     backgroundColor: '#00950A',
     marginTop: '8%',
-    paddingHorizontal: 10,
-    paddingVertical: 2,
+    paddingHorizontal: 20,
+    paddingVertical: 4,
     borderRadius: 100,
   },
   checinButton: {
     backgroundColor: '#FF8383',
-    marginTop: '12%',
-    paddingHorizontal: 10,
-    paddingVertical: 2,
+    marginTop: '5%',
+    marginRight: "15%",
+    paddingHorizontal: 20,
+    paddingVertical: 4,
     borderRadius: 100,
   },
   checkoutText: {
