@@ -5,29 +5,29 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import InitialAppLogo from '../assets/Icons/appLogoForInitialScreen.svg';
 import Animated, {FadeIn,FadeOut} from 'react-native-reanimated';
+import tw from '../lib/tailwind';
 
-const InitialScreen = () => {
+const  InitialScreen = () => {
   const theme = useTheme();
   const navigation = useNavigation();
 
   return (
-    <Animated.View
-      style={styles.animatedContainer}
-      entering={FadeIn.duration(1000)} // Apply FadeIn animation
-      exiting={FadeOut.duration(1000)} // Apply FadeIn animation
+    <View
+    style={tw`px-4  `}
+    // Apply FadeIn animation
     >
-      <SafeAreaView
-        style={[styles.container, {backgroundColor: theme.background}]}>
+   
         {/* App Logo */}
         <InitialAppLogo width={367} height={267} style={styles.logo} />
 
         {/* Welcome Text */}
-        <Text style={[styles.welcomeText, {color: theme.text}]}>
+        <Text style={[styles.welcomeText]}>
           Welcome to Track'd. The worlds leading asset management and ticket
           logging platform.
         </Text>
 
-        {/* Sign Up Button */}
+        <View style={tw`justify-center items-center`}>
+             {/* Sign Up Button */}
         <TouchableOpacity
           style={[styles.button, { borderColor: theme.primary}]}
           onPress={() => {navigation.navigate("SignupAsUser")}}>
@@ -43,8 +43,11 @@ const InitialScreen = () => {
           </Text>
 
         </TouchableOpacity>
-      </SafeAreaView>
-    </Animated.View>
+           </View>
+
+     
+
+    </View>
   );
 };
 
@@ -67,7 +70,8 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontSize: 14,
-    fontFamily: 'Roboto',
+    color: 'rgba(0,0,0,0.8)',
+    fontFamily: 'Poppins-SemiBold',
     textAlign: 'center',
     marginBottom: '10%',
     marginTop: '-20%',

@@ -123,6 +123,8 @@ const JobCard = () => {
   return (
 
     <ScrollView style={styles.container}>
+
+      
       <HeaderWithSearch />
       <View>
         <Text style={styles.sectionTitle}>New card</Text>

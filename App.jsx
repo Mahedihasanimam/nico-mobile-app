@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {ThemeProvider} from './src/Context/ThemeContext';
 import AppNavigation from './src/Navigation/AppNavigation';
 
@@ -7,9 +7,9 @@ const App = () => {
   return (
     <>
       <SafeAreaProvider>
-        <ThemeProvider>
+          <SafeAreaView style={{flex: 1}} >
           <AppNavigation />
-        </ThemeProvider>
+          </SafeAreaView>
       </SafeAreaProvider>
     </>
   );

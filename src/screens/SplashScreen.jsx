@@ -21,6 +21,7 @@ const SplashScreen = () => {
     // time for the splash screen to be visible
     setTimeout(() => {
       setIsVisible(false); // Start fade-out animation
+      
     }, 2000);
   }, []);
 

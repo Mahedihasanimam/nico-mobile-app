@@ -100,6 +100,7 @@ const TechnicianBottomTab = () => {
         name="Location"
         component={Location}
         options={{
+          headerShown:false,
           tabBarIcon: ({color, focused}) =>
             focused ? (
               <LocationIconFocused width={24} height={24} fill="red" />
