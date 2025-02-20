@@ -40,6 +40,10 @@ import FAQ from '../screens/TechnicianPartStackScreens/TechnicianProfile/FAQ';
 import TicketDetails from '../screens/TechnicianPartStackScreens/BottomScreens/Tickets/TicketDetails';
 import InspactionDetails from '../screens/TechnicianPartStackScreens/BottomScreens/InspactionDetails';
 import JobcardDetails from '../screens/TechnicianPartStackScreens/BottomScreens/JobcardDetails';
+import QrcodeCameraScreen from '../screens/UserPartStackScreen/UserSideStackScreens/QrcodeCameraScreen';
+import YourProblem from '../screens/UserPartStackScreen/UserSideStackScreens/YourProblem';
+import ViewAllClosed from '../screens/UserPartStackScreen/UserSideStackScreens/ViewAllClosed';
+import UserCallsDetails from '../screens/UserPartStackScreen/UserSideStackScreens/UserCallsDetails';
 // import Icon from 'react-native-vector-icons/Ionicons';
 
 const Stack = createNativeStackNavigator();
@@ -144,6 +148,52 @@ const AppNavigation = () => {
           options={{
             headerShown: false,
             animation: 'none',
+          }}
+        />
+        <Stack.Screen
+          name="qrCamera"
+          component={QrcodeCameraScreen}
+          options={{
+            headerShown: false,
+            animation: 'none',
+          }}
+        />
+        <Stack.Screen
+          name="Your Problem"
+          component={YourProblem}
+          options={{
+            headerStyle: {
+              backgroundColor: 'red', 
+              
+              borderBottomLeftRadius: 40, 
+              borderBottomRightRadius: 40, 
+              elevation: 0, 
+              
+              shadowOpacity: 0, 
+            },
+            headerTintColor: 'white', 
+          }}
+        />
+        <Stack.Screen
+          name="viewallclosed"
+          component={ViewAllClosed}
+          options={{
+            headerShown: false,
+            animation: 'none',
+          }}
+        />
+        <Stack.Screen
+          name="Details"
+          component={UserCallsDetails}
+          options={{
+            headerStyle: {
+              backgroundColor: 'red', 
+              borderBottomLeftRadius: 40, 
+              borderBottomRightRadius: 40, 
+              elevation: 0, 
+              shadowOpacity: 0, 
+            },
+            headerTintColor: 'white', 
           }}
         />
 
