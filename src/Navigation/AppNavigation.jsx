@@ -1,5 +1,5 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import InitialScreen from '../screens/InitialScreen';
 import SplashScreen from '../screens/SplashScreen';
@@ -44,6 +44,7 @@ import QrcodeCameraScreen from '../screens/UserPartStackScreen/UserSideStackScre
 import YourProblem from '../screens/UserPartStackScreen/UserSideStackScreens/YourProblem';
 import ViewAllClosed from '../screens/UserPartStackScreen/UserSideStackScreens/ViewAllClosed';
 import UserCallsDetails from '../screens/UserPartStackScreen/UserSideStackScreens/UserCallsDetails';
+import ChatList from '../screens/UserPartStackScreen/UserSideStackScreens/ChatList';
 // import Icon from 'react-native-vector-icons/Ionicons';
 
 const Stack = createNativeStackNavigator();
@@ -55,7 +56,7 @@ const AppNavigation = () => {
         <Stack.Screen
           name="SplashScreen"
           component={SplashScreen}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="InitialScreen"
@@ -83,6 +84,8 @@ const AppNavigation = () => {
             },
           }}
         />
+
+
 
         <Stack.Screen
           name="LoginAsUser"
@@ -163,15 +166,15 @@ const AppNavigation = () => {
           component={YourProblem}
           options={{
             headerStyle: {
-              backgroundColor: 'red', 
-              
-              borderBottomLeftRadius: 40, 
-              borderBottomRightRadius: 40, 
-              elevation: 0, 
-              
-              shadowOpacity: 0, 
+              backgroundColor: 'red',
+
+              borderBottomLeftRadius: 40,
+              borderBottomRightRadius: 40,
+              elevation: 0,
+
+              shadowOpacity: 0,
             },
-            headerTintColor: 'white', 
+            headerTintColor: 'white',
           }}
         />
         <Stack.Screen
@@ -187,13 +190,13 @@ const AppNavigation = () => {
           component={UserCallsDetails}
           options={{
             headerStyle: {
-              backgroundColor: 'red', 
-              borderBottomLeftRadius: 40, 
-              borderBottomRightRadius: 40, 
-              elevation: 0, 
-              shadowOpacity: 0, 
+              backgroundColor: 'red',
+              borderBottomLeftRadius: 40,
+              borderBottomRightRadius: 40,
+              elevation: 0,
+              shadowOpacity: 0,
             },
-            headerTintColor: 'white', 
+            headerTintColor: 'white',
           }}
         />
 
@@ -263,13 +266,13 @@ const AppNavigation = () => {
           component={TechnicianProfile}
           options={{
             headerStyle: {
-              backgroundColor: 'red', 
-              borderBottomLeftRadius: 40, 
-              borderBottomRightRadius: 40, 
-              elevation: 0, 
-              shadowOpacity: 0, 
+              backgroundColor: 'red',
+              borderBottomLeftRadius: 40,
+              borderBottomRightRadius: 40,
+              elevation: 0,
+              shadowOpacity: 0,
             },
-            headerTintColor: 'white', 
+            headerTintColor: 'white',
           }}
         />
         <Stack.Screen
@@ -277,13 +280,13 @@ const AppNavigation = () => {
           component={EditProfile}
           options={{
             headerStyle: {
-              backgroundColor: 'red', 
-              borderBottomLeftRadius: 40, 
-              borderBottomRightRadius: 40, 
-              elevation: 0, 
-              shadowOpacity: 0, 
+              backgroundColor: 'red',
+              borderBottomLeftRadius: 40,
+              borderBottomRightRadius: 40,
+              elevation: 0,
+              shadowOpacity: 0,
             },
-            headerTintColor: 'white', 
+            headerTintColor: 'white',
           }}
         />
         <Stack.Screen
@@ -291,66 +294,66 @@ const AppNavigation = () => {
           component={ChnagePassword}
           options={{
             headerStyle: {
-              backgroundColor: 'red', 
-              borderBottomLeftRadius: 40, 
-              borderBottomRightRadius: 40, 
-              elevation: 0, 
-              shadowOpacity: 0, 
+              backgroundColor: 'red',
+              borderBottomLeftRadius: 40,
+              borderBottomRightRadius: 40,
+              elevation: 0,
+              shadowOpacity: 0,
             },
-            headerTintColor: 'white', 
+            headerTintColor: 'white',
           }}
         />
-        
+
         <Stack.Screen
           name="About us"
           component={AboutUs}
           options={{
             headerStyle: {
-              backgroundColor: 'red', 
-              borderBottomLeftRadius: 40, 
-              borderBottomRightRadius: 40, 
-              elevation: 0, 
-              shadowOpacity: 0, 
+              backgroundColor: 'red',
+              borderBottomLeftRadius: 40,
+              borderBottomRightRadius: 40,
+              elevation: 0,
+              shadowOpacity: 0,
             },
-            headerTintColor: 'white', 
+            headerTintColor: 'white',
           }}
         />
-        
-        
+
+
         <Stack.Screen
           name="Privacy policy"
           component={PrivacyPolocy}
           options={{
             headerStyle: {
-              backgroundColor: 'red', 
-              borderBottomLeftRadius: 40, 
-              borderBottomRightRadius: 40, 
-              elevation: 0, 
-              shadowOpacity: 0, 
+              backgroundColor: 'red',
+              borderBottomLeftRadius: 40,
+              borderBottomRightRadius: 40,
+              elevation: 0,
+              shadowOpacity: 0,
             },
-            headerTintColor: 'white', 
+            headerTintColor: 'white',
           }}
         />
-        
+
         <Stack.Screen
           name="FAQ"
           component={FAQ}
           options={{
             headerStyle: {
-              backgroundColor: 'red', 
-              borderBottomLeftRadius: 40, 
-              borderBottomRightRadius: 40, 
-              elevation: 0, 
-              shadowOpacity: 0, 
+              backgroundColor: 'red',
+              borderBottomLeftRadius: 40,
+              borderBottomRightRadius: 40,
+              elevation: 0,
+              shadowOpacity: 0,
             },
-            headerTintColor: 'white', 
+            headerTintColor: 'white',
           }}
         />
         <Stack.Screen
           name="TicketDetails"
           component={TicketDetails}
           options={{
- 
+
 
             headerShown: false,
           }}
@@ -369,7 +372,7 @@ const AppNavigation = () => {
             headerShown: false,
           }}
         />
-        
+
 
 
 
@@ -378,11 +381,11 @@ const AppNavigation = () => {
           component={Notification}
           options={{
             headerStyle: {
-              backgroundColor: 'red', 
+              backgroundColor: 'red',
               borderBottomLeftRadius: 40,
-              borderBottomRightRadius: 40, 
-              elevation: 0, 
-              shadowOpacity: 0, 
+              borderBottomRightRadius: 40,
+              elevation: 0,
+              shadowOpacity: 0,
             },
             headerTintColor: 'white',
           }}
@@ -401,18 +404,25 @@ const AppNavigation = () => {
             presentation: 'transparentModal',
           }}
         />
-
         <Stack.Screen
-        name='ChatDetail'
-        component={ChatDetails}
-        options={{
-          headerShown: false,
-         
-        }}
+          name='Chats'
+          component={ChatList}
+          options={{
+            headerShown: false,
+
+          }}
+        />
+        <Stack.Screen
+          name='ChatDetail'
+          component={ChatDetails}
+          options={{
+            headerShown: false,
+
+          }}
         />
 
       </Stack.Navigator>
-      
+
 
       {/* // Technician side Bottom Navigator  screen End  */}
     </NavigationContainer>

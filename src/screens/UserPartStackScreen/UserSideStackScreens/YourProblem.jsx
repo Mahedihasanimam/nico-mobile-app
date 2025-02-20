@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import tw from '../../../lib/tailwind';
 
 
@@ -51,6 +51,13 @@ const YourProblem = ({ navigation }) => {
         <Text style={tw`text-gray-600 text-[14px] font-normal`}>Lorem ipsum dolor sit amet consectetur. Cras in tellus dignissim pretium diam magna sed id. Ipsum est fringilla quam dolor tristique nunc lectus. Ultrices ultrices quis aenean lobortis sit. A sed consectetur venenatis id. Nibh fames nibh tincidunt et sit vitae rhoncus. Cursus feugiat viverra et nullam hac faucibus massa volutpat purus. Viverra et</Text>
       </View>
 
+
+      <TouchableOpacity
+        style={tw`bg-[#ED1C24] w-[50%] mx-auto p-4 rounded-lg  mt-4 items-center`} 
+      
+      >
+        <Text style={tw`text-white font-bold`}>Send</Text>
+      </TouchableOpacity>
 
 
     </ScrollView>

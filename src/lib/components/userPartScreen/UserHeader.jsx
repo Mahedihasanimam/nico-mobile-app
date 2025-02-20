@@ -3,11 +3,18 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { IconNotification, message, qrscan } from '../../../assets/Icons/icons';
 import avater from '../../../assets/Icons/avater.png';
+import { useNavigation } from '@react-navigation/native';
 
 const UserHeader = () => {
+
+
+  const Navigation = useNavigation();
   return (
     <>
       <View style={styles.header}>
+
+        <TouchableOpacity onPress={() => Navigation.navigate('Myaccount')}>
+
         <View style={styles.profileInfo}>
           <Image source={avater} style={styles.profileImage} />
           <View>
@@ -15,11 +22,12 @@ const UserHeader = () => {
             <Text style={styles.userName}>Md. Mehedi Hasan</Text>
           </View>
         </View>
+        </TouchableOpacity>
         <View style={styles.buttons}>
-          <TouchableOpacity>
+          <TouchableOpacity  onPress={() => Navigation.navigate('Chats')}>
             <SvgXml xml={message} />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity  onPress={() => Navigation.navigate('Notification')}>
             <SvgXml xml={IconNotification} />
           </TouchableOpacity>
         </View>

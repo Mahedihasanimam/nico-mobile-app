@@ -61,7 +61,7 @@ const TechnicianProfile = () => {
       // Redirect to LoginPage
       navigation.reset({
         index: 0,
-        routes: [{ name: 'LoginScreen' }],
+        routes: [{ name: 'SplashScreen' }],
       });
       return;
     }

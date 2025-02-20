@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import avatar from '../../assets/Icons/avater.png';
-import {IconNotification, search} from '../../assets/Icons/icons';
+import {backIcon, IconNotification, search} from '../../assets/Icons/icons';
+import tw from '../tailwind';
 
 const HeaderOnlySerch = () => {
   const navigation = useNavigation();
@@ -25,7 +26,17 @@ const HeaderOnlySerch = () => {
   return (
     <View style={styles.headerContainer}>
       {/* Top Section: Avatar, Welcome Text, and Notification Icon */}
-    <Text style={styles.title}>Chats</Text>
+      <View style={tw`flex flex-row items-center  gap-4 pb-4`}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
+            <SvgXml xml={backIcon} style={styles.arrowIcon} />
+          </TouchableOpacity>
+          
+          <Text style={styles.title}>Details</Text>
+        </View>
 
       {/* Search Box */}
       <View style={styles.searchContainer}>
@@ -54,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
-    paddingBottom: 8,
+  
   },
 
 

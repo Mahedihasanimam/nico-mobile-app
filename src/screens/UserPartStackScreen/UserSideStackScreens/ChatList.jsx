@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NavigationIcon } from '../../../assets/Icons/icons';
 import { SvgXml } from 'react-native-svg';
 
-const Chats = () => {
+const ChatList = () => {
   const navigation = useNavigation();
 
   const chatesData = [
@@ -71,7 +71,6 @@ const Chats = () => {
               </View>
             </TouchableOpacity>
           )}
-
           removeClippedSubviews={false}
         />
       </View>
@@ -79,7 +78,7 @@ const Chats = () => {
   );
 };
 
-export default Chats;
+export default ChatList;
 
 const styles = StyleSheet.create({
   chatCard: {
