@@ -1,125 +1,3 @@
-// import React, { useState, useEffect, useRef } from 'react';
-// import { View, Text } from 'react-native';
-// import MapView, { Marker, Polyline } from 'react-native-maps';
-// import MapViewDirections from 'react-native-maps-directions';
-
-// const Location = () => {
-//   const origin = { latitude: 23.76587432130932, longitude: 90.42686418490443 }; // Start Point
-//   // const destination = { latitude: 23.777542, longitude: 90.409277 }; // End Point
-//   const GOOGLE_MAPS_APIKEY = 'AIzaSyARXa6r8AXKRaoeWqyesQNBI8Y3EUEWSnY';
-
-//   const [startPointer, setStartPointer] = useState({
-//     latitude: 0,
-//     longitude: 0
-//   });
-//   const [destination, setdestination] = useState({
-//     latitude: 0,
-//     longitude: 0
-//   });
-
-//   const [route, setRoute] = useState([]);
-
-//   const mapRef = useRef(null);
-
-//   useEffect(() => {
-//     if (mapRef.current) {
-//       mapRef.current.animateCamera({
-//         center: {
-//           latitude: 23.76587432130932,   // Starting point latitude
-//           longitude: 90.42686418490443, // Starting point longitude
-//         },
-//         pitch: 60,       // Tilt for driving view
-//         heading: 90,     // Driving direction (East)
-//         zoom: 18,        // Close zoom for driver's perspective
-//         altitude: 1000,  // Optional: Elevation for a more dynamic view
-//       }, { duration: 2000 });  // Smooth animation duration
-//     }
-//   }, []);
-
-
-//   return (
-//     <View style={{ flex: 1 }}>
-//       <MapView
-//         showsUserLocation={true}
-//         showsPointsOfInterest
-//         showsMyLocationButton
-//         showsTraffic
-//         showsIndoors
-//         zoomEnabled
-//         ref={mapRef}
-//         // mapType='satellite'
-//         style={{ flex: 1 }}
-//         initialRegion={{
-//           latitude: origin.latitude,
-//           longitude: origin.longitude,
-//           latitudeDelta: 5,
-//           longitudeDelta: 5,
-//         }}
-
-//         onMarkerDrag={(Event) => {
-//           setStartPointer(Event.nativeEvent.coordinate);
-//         }}
-
-//         onPress={e => {
-//           if (startPointer.latitude === 0 && startPointer.longitude === 0) {
-//             setStartPointer(e.nativeEvent?.coordinate);
-
-//           } else {
-//             setdestination(e.nativeEvent?.coordinate);
-//           }
-
-//           // console.log(e.nativeEvent);
-//         }}
-//         // toolbarEnabled
-
-//         showsCompass
-//         scrollEnabled
-//       // cacheEnabled
-//       // scrollEnabled={true}
-
-
-
-//       >
-//         {/* <Marker coordinate={origin} title="Start" pinColor="green" /> */}
-//         {
-//           startPointer?.latitude !== 0 && startPointer?.longitude !== 0 && (
-//             <Marker
-//               coordinate={{ latitude: 23.76587432130932, longitude: 90.42686418490443 }}
-//               title="Start Point"
-//               description="Your starting location"
-//             />
-
-//           )
-//         }
-//         {
-//           destination?.latitude !== 0 && destination?.longitude !== 0 && (
-//             <Marker coordinate={destination} title="Destination" pinColor="red" />
-//           )
-//         }
-//         {/* <Marker coordinate={destination} title="End" pinColor="red" /> */}
-
-//         <MapViewDirections
-//           origin={startPointer}
-//           destination={destination}
-//           apikey={GOOGLE_MAPS_APIKEY}
-//           strokeWidth={8}
-//           strokeColor="blue"
-//           onReady={result => {
-//             setRoute(result.coordinates);
-//           }}
-//         />
-
-//         <Polyline
-//           coordinates={route}
-//           strokeWidth={8}
-//           strokeColor="blue"
-//         />
-//       </MapView>
-//     </View>
-//   );
-// };
-
-// export default Location;
 
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -133,17 +11,28 @@ import {
   ScrollView,
   ActivityIndicator,
   PermissionsAndroid,
-  Platform
+  Platform,
+  SafeAreaView,
+  StatusBar,
+  Dimensions
 } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import Geolocation from '@react-native-community/geolocation';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+const { width, height } = Dimensions.get('window');
 const GOOGLE_MAPS_APIKEY = 'AIzaSyARXa6r8AXKRaoeWqyesQNBI8Y3EUEWSnY';
+const ASPECT_RATIO = width / height;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const LocationScreen = () => {
-  const [userLocation, setUserLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState({
+    latitude: 37.78825,  // Default location (San Francisco)
+    longitude: -122.4324,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LONGITUDE_DELTA,
+  });
   const [destination, setDestination] = useState(null);
   const [searchModal, setSearchModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -158,10 +47,13 @@ const LocationScreen = () => {
   }, []);
 
   const requestLocationPermission = async () => {
-    if (Platform.OS === 'ios') {
-      getCurrentLocation();
-    } else {
-      try {
+    try {
+      if (Platform.OS === 'ios') {
+        const auth = await Geolocation.requestAuthorization('whenInUse');
+        if (auth === 'granted') {
+          getCurrentLocation();
+        }
+      } else {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
           {
@@ -177,9 +69,9 @@ const LocationScreen = () => {
         } else {
           console.log("Location permission denied");
         }
-      } catch (err) {
-        console.warn(err);
       }
+    } catch (err) {
+      console.warn(err);
     }
   };
 
@@ -189,28 +81,43 @@ const LocationScreen = () => {
         const currentLocation = {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA,
         };
         setUserLocation(currentLocation);
       },
-      (error) => console.log(error),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      (error) => {
+        console.log(error.code, error.message);
+        Alert.alert('Error', 'Unable to get location');
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
     );
   };
 
   const searchPlaces = async (query) => {
-    if (!query.trim()) return;
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
+    }
+    
     setLoading(true);
     try {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${query}&key=${GOOGLE_MAPS_APIKEY}`
+        `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${query}&key=${GOOGLE_MAPS_APIKEY}&components=country:us`
       );
       const data = await response.json();
-      setSearchResults(data.predictions);
+      if (data.status === 'OK') {
+        setSearchResults(data.predictions);
+      } else {
+        console.error('Places API Error:', data.status);
+        Alert.alert('Error', 'Failed to search places');
+      }
     } catch (error) {
-      console.error(error);
-      alert('Error searching for places');
+      console.error('Error searching places:', error);
+      Alert.alert('Error', 'Failed to search places');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handlePlaceSelect = async (placeId) => {
@@ -219,30 +126,47 @@ const LocationScreen = () => {
         `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${GOOGLE_MAPS_APIKEY}`
       );
       const data = await response.json();
-      const location = data.result.geometry.location;
       
-      const newDestination = {
-        latitude: location.lat,
-        longitude: location.lng,
-      };
-      setDestination(newDestination);
-      setSearchModal(false);
-      
-      // Fit map to show both markers
-      if (mapRef.current && userLocation) {
-        mapRef.current.fitToCoordinates([userLocation, newDestination], {
-          edgePadding: { top: 100, right: 100, bottom: 100, left: 100 },
-          animated: true,
-        });
+      if (data.status === 'OK') {
+        const location = data.result.geometry.location;
+        const newDestination = {
+          latitude: location.lat,
+          longitude: location.lng,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA,
+        };
+        
+        setDestination(newDestination);
+        setSearchModal(false);
+        setSearchQuery('');
+        
+        // Fit map to show both markers
+        if (mapRef.current && userLocation) {
+          mapRef.current.fitToCoordinates(
+            [
+              { latitude: userLocation.latitude, longitude: userLocation.longitude },
+              { latitude: newDestination.latitude, longitude: newDestination.longitude }
+            ],
+            {
+              edgePadding: { top: 100, right: 100, bottom: 100, left: 100 },
+              animated: true,
+            }
+          );
+        }
+      } else {
+        console.error('Place Details API Error:', data.status);
+        Alert.alert('Error', 'Failed to get place details');
       }
     } catch (error) {
-      console.error(error);
-      alert('Error getting place details');
+      console.error('Error getting place details:', error);
+      Alert.alert('Error', 'Failed to get place details');
     }
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+      
       <TouchableOpacity 
         style={styles.searchBar}
         onPress={() => setSearchModal(true)}
@@ -256,34 +180,31 @@ const LocationScreen = () => {
           ref={mapRef}
           provider={PROVIDER_GOOGLE}
           style={styles.map}
-          initialRegion={{
-            ...userLocation,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          }}
+          initialRegion={userLocation}
           showsUserLocation
           showsMyLocationButton
           showsCompass
         >
-          {userLocation && (
-            <Marker
-              coordinate={userLocation}
-              title="Your Location"
-              description="You are here"
-            />
-          )}
-          
           {destination && (
             <>
               <Marker
-                coordinate={destination}
+                coordinate={{
+                  latitude: destination.latitude,
+                  longitude: destination.longitude
+                }}
                 title="Destination"
                 description="Your destination"
                 pinColor="red"
               />
               <MapViewDirections
-                origin={userLocation}
-                destination={destination}
+                origin={{
+                  latitude: userLocation.latitude,
+                  longitude: userLocation.longitude
+                }}
+                destination={{
+                  latitude: destination.latitude,
+                  longitude: destination.longitude
+                }}
                 apikey={GOOGLE_MAPS_APIKEY}
                 strokeWidth={4}
                 strokeColor="#2E7D32"
@@ -310,9 +231,15 @@ const LocationScreen = () => {
         animationType="slide"
         transparent={false}
       >
-        <View style={styles.modalContainer}>
+        <SafeAreaView style={styles.modalContainer}>
           <View style={styles.modalHeader}>
-            <TouchableOpacity onPress={() => setSearchModal(false)}>
+            <TouchableOpacity 
+              onPress={() => {
+                setSearchModal(false);
+                setSearchQuery('');
+                setSearchResults([]);
+              }}
+            >
               <Icon name="arrow-back" size={24} color="#000" />
             </TouchableOpacity>
             <TextInput
@@ -324,6 +251,7 @@ const LocationScreen = () => {
                 searchPlaces(text);
               }}
               autoFocus
+              clearButtonMode="while-editing"
             />
           </View>
           
@@ -339,30 +267,34 @@ const LocationScreen = () => {
                 >
                   <Icon name="location" size={24} color="#666" />
                   <View style={styles.resultTextContainer}>
-                    <Text style={styles.resultMainText}>{result.structured_formatting.main_text}</Text>
-                    <Text style={styles.resultSecondaryText}>{result.structured_formatting.secondary_text}</Text>
+                    <Text style={styles.resultMainText}>
+                      {result.structured_formatting.main_text}
+                    </Text>
+                    <Text style={styles.resultSecondaryText}>
+                      {result.structured_formatting.secondary_text}
+                    </Text>
                   </View>
                 </TouchableOpacity>
               ))}
             </ScrollView>
           )}
-        </View>
+        </SafeAreaView>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   map: {
     flex: 1,
   },
   searchBar: {
     position: 'absolute',
-    top: 60,
+    top: Platform.OS === 'ios' ? 60 : 20,
     left: 20,
     right: 20,
     height: 50,
@@ -385,13 +317,17 @@ const styles = StyleSheet.create({
   },
   banner: {
     position: 'absolute',
-    top: 140,
+    top: Platform.OS === 'ios' ? 140 : 100,
     left: 20,
     right: 100,
     backgroundColor: '#2E7D32',
     borderRadius: 10,
     padding: 15,
     elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   bannerText: {
     color: 'white',
@@ -406,7 +342,6 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: 50,
   },
   modalHeader: {
     flexDirection: 'row',
